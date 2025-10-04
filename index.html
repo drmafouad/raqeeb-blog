@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceNews - Stock & Crypto News</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cairo:wght@400;600;700&family=Amiri:wght@400;700&family=JetBrains+Mono:wght@400;600&family=Oswald:wght@400;600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Light Theme */
+            --bg-light: #F5F4F0;
+            --card-bg-light: #FFFFFF;
+            --text-light: #2B2B2B;
+            --text-secondary-light: #8B8B8B;
+            --accent-light: #D4C5A9;
+            --border-light: #E0DED9;
+            --hover-light: #f9fafb;
+
+            /* Dark Theme */
+            --bg-dark: #1A1A1A;
+            --card-bg-dark: #252525;
+            --text-dark: #E8E8E8;
+            --text-secondary-dark: #5A5A5A;
+            --accent-dark: #C9A961;
+            --border-dark: #3A3A3A;
+            --hover-dark: #2A2A2A;
+
+            /* Colors */
+            --green: #10B981;
+            --red: #EF4444;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            min-height: 100vh;
+        }
+
+        body.dark-theme {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        body.rtl {
+            direction: rtl;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        header {
+            background: var(--card-bg-light);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .dark-theme header {
+            background: var(--card-bg-dark);
+            border-color: var(--border-dark);
+        }
+
+        header.scrolled {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--accent-light);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .dark-theme .logo-icon {
+            background: var(--accent-dark);
+        }
+
+        .logo-text {
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: inherit;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            transition: all 0.2s;
+        }
+
+        .nav-menu a:hover {
+            background: var(--hover-light);
+        }
+
+        .dark-theme .nav-menu a:hover {
+            background: var(--hover-dark);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border: none;
+            background: transparent;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: inherit;
+        }
+
+        .btn-icon:hover {
+            background: var(--hover-light);
+            transform: scale(1.05);
+        }
+
+        .dark-theme .btn-icon:hover {
+            background: var(--hover-dark);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        .mobile-menu {
+            display: none;
+            border-top: 1px solid var(--border-light);
+            background: var(--card-bg-light);
+        }
+
+        .dark-theme .mobile-menu {
+            border-color: var(--border-dark);
+            background: var(--card-bg-dark);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu nav {
+            padding: 1rem;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: inherit;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-menu a:hover {
+            background: var(--hover-light);
+        }
+
+        .dark-theme .mobile-menu a:hover {
+            background: var(--hover-dark);
+        }
+
+        /* Price Ticker */
+        .price-ticker {
+            background: var(--card-bg-light);
+            border-bottom: 1px solid var(--border-light);
+            overflow: hidden;
+        }
+
+        .dark-theme .price-ticker {
+            background: var(--card-bg-dark);
+            border-color: var(--border-dark);
+        }
+
+        .ticker-content {
+            display: flex;
+            gap: 2rem;
+            padding: 0.75rem 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .ticker-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .ticker-symbol {
+            font-weight: 600;
+        }
+
+        .ticker-price {
+            color: var(--text-secondary-light);
+        }
+
+        .dark-theme .ticker-price {
+            color: var(--text-secondary-dark);
+        }
+
+        .ticker-change {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .ticker-change.up {
+            color: var(--green);
+        }
+
+        .ticker-change.down {
+            color: var(--red);
+        }
+
+        /* Ad Spaces */
+        .ad-space {
+            background: var(--card-bg-light);
+            border: 2px dashed var(--border-light);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            color: var(--text-secondary-light);
+            margin: 1rem 0;
+        }
+
+        .dark-theme .ad-space {
+            background: var(--card-bg-dark);
+            border-color: var(--border-dark);
+            color: var(--text-secondary-dark);
+        }
+
+        /* Main Layout */
+        main {
+            padding: 2rem 0;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        /* Featured Article */
+        .featured-article {
+            background: var(--card-bg-light);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            margin-bottom: 2rem;
+        }
+
+        .dark-theme .featured-article {
+            background: var(--card-bg-dark);
+        }
+
+        .featured-article:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .featured-image {
+            position: relative;
+            height: 24rem;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--accent-light);
+            padding: 0.25rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .rtl .featured-badge {
+            left: auto;
+            right: 1rem;
+        }
+
+        .dark-theme .featured-badge {
+            background: var(--accent-dark);
+        }
+
+        .featured-content {
+            padding: 1.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary-light);
+        }
+
+        .dark-theme .article-meta {
+            color: var(--text-secondary-dark);
+        }
+
+        .article-title {
+            font-size: 1.875rem;
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            color: var(--text-secondary-light);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            font-family: Georgia, serif;
+            font-size: 1.125rem;
+        }
+
+        .rtl .article-excerpt {
+            font-family: 'Amiri', serif;
+            line-height: 1.8;
+        }
+
+        .dark-theme .article-excerpt {
+            color: var(--text-secondary-dark);
+        }
+
+        .article-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .article-author {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .btn-read-more {
+            background: var(--accent-light);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .dark-theme .btn-read-more {
+            background: var(--accent-dark);
+        }
+
+        .btn-read-more:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        /* Article Grid */
+        .article-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .article-card {
+            background: var(--card-bg-light);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .dark-theme .article-card {
+            background: var(--card-bg-dark);
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .article-image {
+            height: 12rem;
+            overflow: hidden;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .card-excerpt {
+            color: var(--text-secondary-light);
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+            font-family: Georgia, serif;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .rtl .card-excerpt {
+            font-family: 'Amiri', serif;
+            line-height: 1.8;
+        }
+
+        .dark-theme .card-excerpt {
+            color: var(--text-secondary-dark);
+        }
+
+        .btn-read-small {
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: inherit;
+            padding: 0;
+            transition: opacity 0.2s;
+        }
+
+        .btn-read-small:hover {
+            opacity: 0.7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sidebar-card {
+            background: var(--card-bg-light);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-theme .sidebar-card {
+            background: var(--card-bg-dark);
+        }
+
+        .sidebar-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .trending-item {
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .dark-theme .trending-item {
+            border-color: var(--border-dark);
+        }
+
+        .trending-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .trending-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .trending-title:hover {
+            opacity: 0.7;
+        }
+
+        .trending-date {
+            font-size: 0.75rem;
+            color: var(--text-secondary-light);
+        }
+
+        .dark-theme .trending-date {
+            color: var(--text-secondary-dark);
+        }
+
+        .newsletter-card {
+            background: var(--accent-light);
+        }
+
+        .dark-theme .newsletter-card {
+            background: var(--accent-dark);
+        }
+
+        .newsletter-text {
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            font-family: Georgia, serif;
+            color: var(--text-secondary-light);
+        }
+
+        .rtl .newsletter-text {
+            font-family: 'Amiri', serif;
+        }
+
+        .dark-theme .newsletter-text {
+            color: var(--text-secondary-dark);
+        }
+
+        .newsletter-input {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-light);
+            background: var(--card-bg-light);
+            color: inherit;
+            margin-bottom: 0.75rem;
+            font-family: inherit;
+        }
+
+        .dark-theme .newsletter-input {
+            background: var(--card-bg-dark);
+            border-color: var(--border-dark);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            ring: 2px;
+            ring-offset: 2px;
+        }
+
+        .newsletter-btn {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            background: var(--card-bg-light);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .dark-theme .newsletter-btn {
+            background: var(--card-bg-dark);
+        }
+
+        .newsletter-btn:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg-light);
+            border-top: 1px solid var(--border-light);
+            padding: 2rem 0;
+            margin-top: 4rem;
+            text-align: center;
+            color: var(--text-secondary-light);
+            font-size: 0.875rem;
+        }
+
+        .dark-theme footer {
+            background: var(--card-bg-dark);
+            border-color: var(--border-dark);
+            color: var(--text-secondary-dark);
+        }
+
+        /* Mobile Bottom Ad */
+        .mobile-bottom-ad {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--card-bg-light);
+            border-top: 1px solid var(--border-light);
+            padding: 0.5rem;
+            z-index: 50;
+        }
+
+        .dark-theme .mobile-bottom-ad {
+            background: var(--card-bg-dark);
+            border-color: var(--border-dark);
+        }
+
+        /* Icons */
+        .icon {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .icon-sm {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex;
+            }
+
+            .article-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+
+            .mobile-bottom-ad {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .mobile-bottom-ad {
+                display: block;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-icon" id="logoIcon">FN</div>
+                    <span class="logo-text" id="logoText">FinanceNews</span>
+                </a>
+
+                <ul class="nav-menu">
+                    <li><a href="#" id="nav-crypto">Crypto</a></li>
+                    <li><a href="#" id="nav-stocks">Stocks</a></li>
+                    <li><a href="#" id="nav-market">Market News</a></li>
+                </ul>
+
+                <div class="header-actions">
+                    <button class="btn-icon" aria-label="Search">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </button>
+                    <button class="btn-icon" id="langBtn" aria-label="Change Language">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </button>
+                    <button class="btn-icon" id="themeBtn" aria-label="Toggle Theme">
+                        <svg class="icon" id="themeIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                    </button>
+                    <button class="btn-icon mobile-menu-btn" id="menuBtn" aria-label="Menu">
+                        <svg class="icon" id="menuIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <nav>
+                <a href="#" id="mobile-nav-crypto">Crypto</a>
+                <a href="#" id="mobile-nav-stocks">Stocks</a>
+                <a href="#" id="mobile-nav-market">Market News</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Price Ticker -->
+    <div class="price-ticker">
+        <div class="container">
+            <div class="ticker-content" id="tickerContent"></div>
+        </div>
+    </div>
+
+    <!-- Header Ad -->
+    <div class="container">
+        <div class="ad-space">
+            <p style="font-size: 0.875rem;">Advertisement - 728x90</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="main-grid">
+                <div id="mainContent"></div>
+                <aside class="sidebar" id="sidebar"></aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p id="footerText">© 2025 FinanceNews. All rights reserved. Powered by N8N.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Ad -->
+    <div class="mobile-bottom-ad">
+        <div class="ad-space" style="margin: 0;">
+            <p style="font-size: 0.75rem;">Mobile Banner Ad - 320x100</p>
+        </div>
+    </div>
+
+    <script type="module">
+        // State
+        let theme = 'light';
+        let language = 'en';
+
+        // Mock Data
+        const prices = [
+            { symbol: 'BTC', price: '67,234.50', change: '+2.4%', up: true },
+            { symbol: 'ETH', price: '3,456.20', change: '+1.8%', up: true },
+            { symbol: 'AAPL', price: '178.45', change: '-0.5%', up: false },
+            { symbol: 'TSLA', price: '242.80', change: '+3.2%', up: true },
+            { symbol: 'GOLD', price: '2,045.30', change: '+0.8%', up: true },
+        ];
+
+        const articles = {
+            en: [
+                {
+                    id: 1,
+                    title: 'Bitcoin Surges Past $67K as Institutional Interest Grows',
+                    excerpt: 'Major financial institutions are increasing their cryptocurrency holdings, driving Bitcoin to new monthly highs amid positive market sentiment.',
+                    category: 'Crypto',
+                    author: 'Sarah Johnson',
+                    date: '2 hours ago',
+                    image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=800&h=400&fit=crop',
+                    featured: true
+                },
+                {
+                    id: 2,
+                    title: 'Fed Signals Potential Rate Cuts in Q2 2025',
+                    excerpt: 'Federal Reserve officials hint at possible monetary policy adjustments following recent economic data showing controlled inflation rates.',
+                    category: 'Market News',
+                    author: 'Michael Chen',
+                    date: '4 hours ago',
+                    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=400&fit=crop'
+                },
+                {
+                    id: 3,
+                    title: 'Tech Stocks Rally on Strong Earnings Reports',
+                    excerpt: 'Major technology companies exceed quarterly expectations, pushing NASDAQ to record highs as investor confidence strengthens.',
+                    category: 'Stocks',
+                    author: 'Emily Rodriguez',
+                    date: '6 hours ago',
+                    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop'
+                },
+                {
+                    id: 4,
+                    title: 'Ethereum 2.0 Upgrade Shows Promising Results',
+                    excerpt: 'Network efficiency improvements and reduced gas fees attract more developers to the Ethereum ecosystem.',
+                    category: 'Crypto',
+                    author: 'David Kim',
+                    date: '8 hours ago',
+                    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=400&fit=crop'
+                },
+                {
+                    id: 5,
+                    title: 'Gold Prices Reach New Highs Amid Economic Uncertainty',
+                    excerpt: 'Investors turn to precious metals as safe-haven assets while global markets navigate geopolitical tensions.',
+                    category: 'Commodities',
+                    author: 'Lisa Zhang',
+                    date: '10 hours ago',
+                    image: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?w=800&h=400&fit=crop'
+                },
+                {
+                    id: 6,
+                    title: 'AI Companies Drive Market Innovation Wave',
+                    excerpt: 'Artificial intelligence sector continues to attract massive investments as companies race to develop next-generation technologies.',
+                    category: 'Stocks',
+                    author: 'James Wilson',
+                    date: '12 hours ago',
+                    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop'
+                }
+            ],
+            ar: [
+                {
+                    id: 1,
+                    title: 'بيتكوين يتجاوز 67 ألف دولار مع تزايد الاهتمام المؤسسي',
+                    excerpt: 'المؤسسات المالية الكبرى تزيد من حيازاتها للعملات المشفرة، مما يدفع بيتكوين إلى أعلى مستوياته الشهرية وسط معنويات السوق الإيجابية.',
+                    category: 'العملات المشفرة',
+                    author: 'سارة جونسون',
+                    date: 'منذ ساعتين',
+                    image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=800&h=400&fit=crop',
+                    featured: true
+                },
+                {
+                    id: 2,
+                    title: 'الاحتياطي الفيدرالي يشير إلى احتمال خفض الفائدة في الربع الثاني 2025',
+                    excerpt: 'مسؤولو الاحتياطي الفيدرالي يلمحون إلى تعديلات محتملة في السياسة النقدية بعد البيانات الاقتصادية الأخيرة.',
+                    category: 'أخبار السوق',
+                    author: 'مايكل تشين',
+                    date: 'منذ 4 ساعات',
+                    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=400&fit=crop'
+                },
+                {
+                    id: 3,
+                    title: 'أسهم التكنولوجيا ترتفع بقوة بعد تقارير أرباح قوية',
+                    excerpt: 'شركات التكنولوجيا الكبرى تتجاوز التوقعات الفصلية، مما يدفع ناسداك إلى مستويات قياسية.',
+                    category: 'الأسهم',
+                    author: 'إميلي رودريغيز',
+                    date: 'منذ 6 ساعات',
+                    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop'
+                },
+                {
+                    id: 4,
+                    title: 'ترقية إيثيريوم 2.0 تظهر نتائج واعدة',
+                    excerpt: 'تحسينات كفاءة الشبكة وانخفاض رسوم الغاز تجذب المزيد من المطورين إلى نظام إيثيريوم البيئي.',
+                    category: 'العملات المشفرة',
+                    author: 'ديفيد كيم',
+                    date: 'منذ 8 ساعات',
+                    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=400&fit=crop'
+                },
+                {
+                    id: 5,
+                    title: 'أسعار الذهب تصل إلى مستويات قياسية جديدة',
+                    excerpt: 'المستثمرون يتجهون إلى المعادن الثمينة كأصول ملاذ آمن بينما تتنقل الأسواق العالمية.',
+                    category: 'السلع',
+                    author: 'ليزا تشانغ',
+                    date: 'منذ 10 ساعات',
+                    image: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?w=800&h=400&fit=crop'
+                },
+                {
+                    id: 6,
+                    title: 'شركات الذكاء الاصطناعي تقود موجة الابتكار في السوق',
+                    excerpt: 'قطاع الذكاء الاصطناعي يستمر في جذب استثمارات ضخمة بينما تتسابق الشركات لتطوير تقنيات الجيل القادم.',
+                    category: 'الأسهم',
+                    author: 'جيمس ويلسون',
+                    date: 'منذ 12 ساعة',
+                    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop'
+                }
+            ]
+        };
+
+        const texts = {
+            en: {
+                search: 'Search...',
+                categories: 'Categories',
+                crypto: 'Crypto',
+                stocks: 'Stocks',
+                market: 'Market News',
+                trending: 'Trending Now',
+                newsletter: 'Subscribe to Newsletter',
+                email: 'Enter your email',
+                subscribe: 'Subscribe',
+                readMore: 'Read More',
+                featured: 'Featured Story',
+                footer: '© 2025 FinanceNews. All rights reserved. Powered by N8N.',
+                newsletterDesc: 'Get the latest market insights delivered to your inbox.',
+                logoText: 'FinanceNews',
+                logoIcon: 'FN'
+            },
+            ar: {
+                search: 'بحث...',
+                categories: 'الفئات',
+                crypto: 'العملات المشفرة',
+                stocks: 'الأسهم',
+                market: 'أخبار السوق',
+                trending: 'الأكثر رواجاً',
+                newsletter: 'اشترك في النشرة الإخبارية',
+                email: 'أدخل بريدك الإلكتروني',
+                subscribe: 'اشتراك',
+                readMore: 'اقرأ المزيد',
+                featured: 'القصة المميزة',
+                footer: '© 2025 الأخبار المالية. جميع الحقوق محفوظة. مدعوم بواسطة N8N.',
+                newsletterDesc: 'احصل على أحدث رؤى السوق في بريدك الإلكتروني.',
+                logoText: 'الأخبار المالية',
+                logoIcon: 'مأ'
+            }
+        };
+
+        // Initialize
+        function init() {
+            renderTicker();
+            renderContent();
+            setupEventListeners();
+            handleScroll();
+            updateNavigation();
+        }
+
+        // Event Listeners
+        function setupEventListeners() {
+            document.getElementById('themeBtn').addEventListener('click', toggleTheme);
+            document.getElementById('langBtn').addEventListener('click', toggleLanguage);
+            document.getElementById('menuBtn').addEventListener('click', toggleMenu);
+            window.addEventListener('scroll', handleScroll);
+        }
+
+        function toggleTheme() {
+            theme = theme === 'light' ? 'dark' : 'light';
+            document.body.classList.toggle('dark-theme');
+            
+            const icon = document.getElementById('themeIcon');
+            if (theme === 'dark') {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
+            } else {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>';
+            }
+        }
+
+        function toggleLanguage() {
+            language = language === 'en' ? 'ar' : 'en';
+            document.documentElement.lang = language;
+            document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+            document.body.classList.toggle('rtl');
+            renderContent();
+            updateNavigation();
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('menuIcon');
+            menu.classList.toggle('active');
+            
+            if (menu.classList.contains('active')) {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
+            } else {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
+            }
+        }
+
+        function handleScroll() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+
+        function updateNavigation() {
+            const t = texts[language];
+            document.getElementById('logoText').textContent = t.logoText;
+            document.getElementById('logoIcon').textContent = t.logoIcon;
+            document.getElementById('nav-crypto').textContent = t.crypto;
+            document.getElementById('nav-stocks').textContent = t.stocks;
+            document.getElementById('nav-market').textContent = t.market;
+            document.getElementById('mobile-nav-crypto').textContent = t.crypto;
+            document.getElementById('mobile-nav-stocks').textContent = t.stocks;
+            document.getElementById('mobile-nav-market').textContent = t.market;
+            document.getElementById('footerText').textContent = t.footer;
+        }
+
+        // Render Functions
+        function renderTicker() {
+            const container = document.getElementById('tickerContent');
+            container.innerHTML = prices.map(item => `
+                <div class="ticker-item">
+                    <span class="ticker-symbol">${item.symbol}</span>
+                    <span class="ticker-price">${item.price}</span>
+                    <span class="ticker-change ${item.up ? 'up' : 'down'}">
+                        <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${item.up ? 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6' : 'M13 17h8m0 0V9m0 8l-8-8-4 4-6-6'}"/>
+                        </svg>
+                        ${item.change}
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        function renderContent() {
+            const t = texts[language];
+            const currentArticles = articles[language];
+            const featured = currentArticles.find(a => a.featured);
+            const regular = currentArticles.filter(a => !a.featured);
+
+            // Main Content
+            const mainContent = document.getElementById('mainContent');
+            mainContent.innerHTML = `
+                ${renderFeaturedArticle(featured, t)}
+                <div class="article-grid">
+                    ${regular.slice(0, 4).map(article => renderArticleCard(article, t)).join('')}
+                </div>
+                <div class="ad-space">
+                    <p style="font-size: 0.875rem;">Advertisement - Native In-Feed Ad</p>
+                    <p style="font-size: 0.75rem; margin-top: 0.25rem;">Responsive Sizing</p>
+                </div>
+                <div class="article-grid">
+                    ${regular.slice(4).map(article => renderArticleCard(article, t)).join('')}
+                </div>
+            `;
+
+            // Sidebar
+            const sidebar = document.getElementById('sidebar');
+            sidebar.innerHTML = `
+                <div class="ad-space" style="min-height: 250px; position: sticky; top: 5rem;">
+                    <p style="font-size: 0.875rem;">Advertisement</p>
+                    <p style="font-size: 0.75rem; margin-top: 0.25rem;">300x250</p>
+                    <div style="height: 200px; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 0.75rem;">Sidebar Ad Space</span>
+                    </div>
+                </div>
+                ${renderTrendingSection(regular.slice(0, 3), t)}
+                ${renderNewsletterSection(t)}
+            `;
+        }
+
+        function renderFeaturedArticle(article, t) {
+            const clockIcon = '<svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
+            const userIcon = '<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>';
+            const chevronIcon = '<svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>';
+            
+            return `
+                <article class="featured-article fade-in">
+                    <div class="featured-image">
+                        <img src="${article.image}" alt="${article.title}">
+                        <div class="featured-badge">${t.featured}</div>
+                    </div>
+                    <div class="featured-content">
+                        <div class="article-meta">
+                            <span>${article.category}</span>
+                            <span style="display: flex; align-items: center; gap: 0.25rem;">
+                                ${clockIcon}
+                                ${article.date}
+                            </span>
+                        </div>
+                        <h2 class="article-title">${article.title}</h2>
+                        <p class="article-excerpt">${article.excerpt}</p>
+                        <div class="article-footer">
+                            <div class="article-author">
+                                ${userIcon}
+                                <span>${article.author}</span>
+                            </div>
+                            <button class="btn-read-more">
+                                <span>${t.readMore}</span>
+                                ${chevronIcon}
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            `;
+        }
+
+        function renderArticleCard(article, t) {
+            return `
+                <article class="article-card fade-in">
+                    <div class="article-image">
+                        <img src="${article.image}" alt="${article.title}">
+                    </div>
+                    <div class="card-content">
+                        <div class="article-meta" style="font-size: 0.75rem;">
+                            <span>${article.category}</span>
+                            <span style="display: flex; align-items: center; gap: 0.25rem;">
+                                <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                ${article.date}
+                            </span>
+                        </div>
+                        <h3 class="card-title">${article.title}</h3>
+                        <p class="card-excerpt">${article.excerpt}</p>
+                        <button class="btn-read-small">
+                            <span>${t.readMore}</span>
+                            <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+            `;
+        }
+
+        function renderTrendingSection(articles, t) {
+            return `
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        </svg>
+                        <span>${t.trending}</span>
+                    </h3>
+                    ${articles.map(article => `
+                        <div class="trending-item">
+                            <h4 class="trending-title">${article.title}</h4>
+                            <span class="trending-date">${article.date}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function renderNewsletterSection(t) {
+            return `
+                <div class="sidebar-card newsletter-card">
+                    <h3 class="sidebar-title">${t.newsletter}</h3>
+                    <p class="newsletter-text">${t.newsletterDesc}</p>
+                    <input type="email" class="newsletter-input" placeholder="${t.email}">
+                    <button class="newsletter-btn">${t.subscribe}</button>
+                </div>
+            `;
+        }
+
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>
