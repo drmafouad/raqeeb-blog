@@ -89,6 +89,26 @@ footer p{margin:0 0 8px;max-width:var(--measure)}
   table{font-size:.9rem} .stat{gap:20px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.chart{width:100%;height:auto;display:block;margin:0 0 8px;overflow:visible}
+.chart .bar.up{fill:var(--gain)} .chart .bar.dn{fill:var(--loss)}
+.chart .bar.fl{fill:#cfccc2}
+.chart .axis{stroke:var(--rule);stroke-width:1}
+.chart .lab{font-size:12.5px;fill:var(--ink);font-family:"IBM Plex Sans","IBM Plex Sans Arabic",sans-serif}
+.chart .val{font-size:12px;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.chart .val.up{fill:var(--gain)} .chart .val.dn{fill:var(--loss)} .chart .val.fl{fill:var(--ink-soft)}
+.chart .tick,.chart .cnt{font-size:11px;fill:var(--ink-soft);
+  font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.chart .line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.chart .line.up{stroke:var(--gain)} .chart .line.dn{stroke:var(--loss)}
+.chart .area.up{fill:var(--gain);opacity:.08}
+.chart .area.dn{fill:var(--loss);opacity:.08}
+.chart .dot.up{fill:var(--gain)} .chart .dot.dn{fill:var(--loss)}
+.spark{height:120px}
+@media (max-width:600px){
+  .chart .lab{font-size:11px} .chart .val{font-size:10.5px}
+  .chart .tick,.chart .cnt{font-size:9.5px}
+}
 </style>
 <header class="top"><div class="wrap">
   <a class="brand" href="index.html">البورصة اليومية <span>·</span></a>
@@ -101,6 +121,7 @@ footer p{margin:0 0 8px;max-width:var(--measure)}
 <h1>البورصة اليومية</h1>
 <p class="date">تقرير جلسة البورصة المصرية</p>
 <ol class="archive">
+<li><a href="2026-09-02.html"><span>الأربعاء 2 سبتمبر 2026</span><span class="d">2026-09-02</span></a></li>
 <li><a href="2026-09-01.html"><span>الثلاثاء 1 سبتمبر 2026</span><span class="d">2026-09-01</span></a></li>
 </ol>
 </main>
