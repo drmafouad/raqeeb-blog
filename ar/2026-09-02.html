@@ -4,6 +4,17 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>البورصة اليومية - الأربعاء 2 سبتمبر 2026</title>
 <meta name="description" content="تقرير جلسة البورصة المصرية">
+<meta name="theme-color" content="#fcfbf7">
+<meta name="theme-color" content="#15151a" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="البورصة اليومية">
+<meta property="og:locale" content="ar_EG">
+<meta property="og:title" content="البورصة اليومية - الأربعاء 2 سبتمبر 2026">
+<meta property="og:description" content="تقرير جلسة البورصة المصرية">
+<meta property="og:url" content="https://egx.investorbunny.com/ar/2026-09-02.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="البورصة اليومية - الأربعاء 2 سبتمبر 2026">
+<meta name="twitter:description" content="تقرير جلسة البورصة المصرية">
 <link rel="canonical" href="https://egx.investorbunny.com/ar/2026-09-02.html">
 <link rel="alternate" hreflang="en" href="https://egx.investorbunny.com/en/2026-09-02.html">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -90,6 +101,26 @@ footer p{margin:0 0 8px;max-width:var(--measure)}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
+@media (prefers-color-scheme:dark){
+  :root{
+    --ink:#e9e7e0; --ink-soft:#a19d92; --paper:#15151a; --panel:#1e1e25;
+    --rule:#2d2d35; --gold:#d9b568; --gain:#3ecf8e; --loss:#ff7a72; --flat:#4a4a54;
+  }
+  .ribbon .fl{background:#3c3c46}
+  .chart .bar.fl{fill:#3c3c46}
+}
+
+/* quick jump nav - only rendered when a page has enough sections to need it */
+nav.jump{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 32px;font-size:.86rem}
+nav.jump a{color:var(--ink-soft);text-decoration:none;padding:5px 12px;
+  border:1px solid var(--rule);border-radius:999px;white-space:nowrap}
+nav.jump a:hover{color:var(--ink);border-color:var(--gold)}
+
+/* charts stay legible at native size on narrow phones by scrolling
+   sideways instead of shrinking their text past reading size */
+.chart-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 8px}
+.chart-scroll .chart{min-width:520px;margin:0}
+
 .chart{width:100%;height:auto;display:block;margin:0 0 8px;overflow:visible}
 .chart .bar.up{fill:var(--gain)} .chart .bar.dn{fill:var(--loss)}
 .chart .bar.fl{fill:#cfccc2}
@@ -120,7 +151,8 @@ footer p{margin:0 0 8px;max-width:var(--measure)}
 <main class="wrap">
 <p class="date">الأربعاء 2 سبتمبر 2026</p>
 <h1>تقرير جلسة البورصة المصرية</h1>
-<div class="breadth">
+<nav class="jump"><a href="#breadth">اتساع السوق</a><a href="#sectors">أداء القطاعات</a><a href="#spread">توزيع التغيرات اليومية</a><a href="#gainers">الأكثر ارتفاعاً</a><a href="#losers">الأكثر انخفاضاً</a><a href="#filings">الإفصاحات</a></nav>
+<div class="breadth" id="breadth">
 <h2>اتساع السوق</h2>
 <div class="ribbon" role="img" aria-label="108 صاعد, 0 دون تغيير, 91 هابط">
 <i class="up" style="width:54.3%"></i>
@@ -135,11 +167,11 @@ footer p{margin:0 0 8px;max-width:var(--measure)}
 </div>
 <section><h2 class="sec">المؤشرات</h2>
 <table><thead><tr><th>السهم</th><th class="n">المستوى</th><th class="n">التغير</th></tr></thead><tbody>
-<tr><td class="t">EGX30</td><td class="n">-</td><td class="n"><span class="fl">-</span></td></tr>
+<tr><td class="t">EGX30</td><td class="n">55,431.29</td><td class="n"><span class="up">+0.01%</span></td></tr>
 </tbody></table>
 </section>
-<section><h2 class="sec">أداء القطاعات</h2>
-<svg viewBox="0 0 720 224" class="chart" role="img" aria-label="أداء القطاعات" preserveAspectRatio="xMidYMid meet">
+<section id="sectors"><h2 class="sec">أداء القطاعات</h2>
+<div class="chart-scroll"><svg viewBox="0 0 720 224" class="chart" role="img" aria-label="أداء القطاعات" preserveAspectRatio="xMidYMid meet">
 <line x1="416.0" y1="4" x2="416.0" y2="212" class="axis"/>
 <rect x="416.0" y="11.0" width="132.1" height="16" rx="1.5" class="bar up"/>
 <text x="158.0" y="19.0" text-anchor="end" class="lab" dominant-baseline="middle">الصناعات</text>
@@ -165,10 +197,10 @@ footer p{margin:0 0 8px;max-width:var(--measure)}
 <rect x="218.7" y="193.0" width="197.3" height="16" rx="1.5" class="bar dn"/>
 <text x="158.0" y="201.0" text-anchor="end" class="lab" dominant-baseline="middle">السلع الاستهلاكية</text>
 <text x="211.7" y="201.0" text-anchor="end" class="val dn" dominant-baseline="middle">-2.79%</text>
-</svg>
+</svg></div>
 </section>
-<section><h2 class="sec">توزيع التغيرات اليومية</h2>
-<svg viewBox="0 0 720 150" class="chart" role="img" aria-label="توزيع التغيرات اليومية: distribution of 199 daily changes" preserveAspectRatio="xMidYMid meet">
+<section id="spread"><h2 class="sec">توزيع التغيرات اليومية</h2>
+<div class="chart-scroll"><svg viewBox="0 0 720 150" class="chart" role="img" aria-label="توزيع التغيرات اليومية: distribution of 199 daily changes" preserveAspectRatio="xMidYMid meet">
 <rect x="642.0" y="118.0" width="66.0" height="6.0" rx="1.5" class="bar dn"/>
 <text x="675.0" y="114.0" text-anchor="middle" class="cnt">2</text>
 <text x="675.0" y="142" text-anchor="middle" class="tick">&lt;-10</text>
@@ -200,11 +232,11 @@ footer p{margin:0 0 8px;max-width:var(--measure)}
 <text x="45.0" y="102.0" text-anchor="middle" class="cnt">6</text>
 <text x="45.0" y="142" text-anchor="middle" class="tick">≥10</text>
 <line x1="10" y1="124.0" x2="710" y2="124.0" class="axis"/>
-</svg>
+</svg></div>
 <p class="cap">199 سهم</p>
 </section>
-<section><h2 class="sec">الأكثر ارتفاعاً</h2>
-<svg viewBox="0 0 720 172" class="chart" role="img" aria-label="الأكثر ارتفاعاً" preserveAspectRatio="xMidYMid meet">
+<section id="gainers"><h2 class="sec">الأكثر ارتفاعاً</h2>
+<div class="chart-scroll"><svg viewBox="0 0 720 172" class="chart" role="img" aria-label="الأكثر ارتفاعاً" preserveAspectRatio="xMidYMid meet">
 <line x1="380.0" y1="4" x2="380.0" y2="160" class="axis"/>
 <rect x="380.0" y="11.0" width="247.0" height="16" rx="1.5" class="bar up"/>
 <text x="86.0" y="19.0" text-anchor="end" class="lab" dominant-baseline="middle">TRTO</text>
@@ -224,7 +256,7 @@ footer p{margin:0 0 8px;max-width:var(--measure)}
 <rect x="380.0" y="141.0" width="124.7" height="16" rx="1.5" class="bar up"/>
 <text x="86.0" y="149.0" text-anchor="end" class="lab" dominant-baseline="middle">HDBK</text>
 <text x="511.7" y="149.0" text-anchor="start" class="val up" dominant-baseline="middle">+10.10%</text>
-</svg>
+</svg></div>
 <table><thead><tr><th>السهم</th><th class="n">السعر</th><th class="n">التغير</th><th class="n">منذ بداية العام</th></tr></thead><tbody>
 <tr><td><span class="t">TRTO</span><br><span class="co">Trans Oceans Tours</span></td><td class="n">0.06</td><td class="n"><span class="up">+20.00%</span></td><td class="n"><span class="up">+100.0%</span></td></tr>
 <tr><td><span class="t">ATLC</span><br><span class="co">Al Tawfeek Leasing Company - A.T.Lease</span></td><td class="n">6.80</td><td class="n"><span class="up">+19.93%</span></td><td class="n"><span class="up">+65.0%</span></td></tr>
@@ -235,30 +267,29 @@ footer p{margin:0 0 8px;max-width:var(--measure)}
 <tr><td><span class="t">ABUK</span><br><span class="co">Abu Qir Fertilizers</span></td><td class="n">88.00</td><td class="n"><span class="up">+8.78%</span></td><td class="n"><span class="up">+72.5%</span></td></tr>
 <tr><td><span class="t">AMOC</span><br><span class="co">Alexandria Mineral Oils Company</span></td><td class="n">13.25</td><td class="n"><span class="up">+8.16%</span></td><td class="n"><span class="up">+91.2%</span></td></tr>
 </tbody></table></section>
-<section><h2 class="sec">الأكثر انخفاضاً</h2>
-<svg viewBox="0 0 720 172" class="chart" role="img" aria-label="الأكثر انخفاضاً" preserveAspectRatio="xMidYMid meet">
+<section id="losers"><h2 class="sec">الأكثر انخفاضاً</h2>
+<div class="chart-scroll"><svg viewBox="0 0 720 172" class="chart" role="img" aria-label="الأكثر انخفاضاً" preserveAspectRatio="xMidYMid meet">
 <line x1="380.0" y1="4" x2="380.0" y2="160" class="axis"/>
-<rect x="133.1" y="11.0" width="246.9" height="16" rx="1.5" class="bar dn"/>
-<text x="86.0" y="19.0" text-anchor="end" class="lab" dominant-baseline="middle">BIGP</text>
-<text x="126.1" y="19.0" text-anchor="end" class="val dn" dominant-baseline="middle">-99.54%</text>
-<rect x="330.4" y="37.0" width="49.6" height="16" rx="1.5" class="bar dn"/>
-<text x="86.0" y="45.0" text-anchor="end" class="lab" dominant-baseline="middle">AMES</text>
-<text x="323.4" y="45.0" text-anchor="end" class="val dn" dominant-baseline="middle">-20.00%</text>
-<rect x="357.6" y="63.0" width="22.4" height="16" rx="1.5" class="bar dn"/>
-<text x="86.0" y="71.0" text-anchor="end" class="lab" dominant-baseline="middle">DEIN</text>
-<text x="350.6" y="71.0" text-anchor="end" class="val dn" dominant-baseline="middle">-9.05%</text>
-<rect x="359.8" y="89.0" width="20.2" height="16" rx="1.5" class="bar dn"/>
-<text x="86.0" y="97.0" text-anchor="end" class="lab" dominant-baseline="middle">UTOP</text>
-<text x="352.8" y="97.0" text-anchor="end" class="val dn" dominant-baseline="middle">-8.16%</text>
-<rect x="361.1" y="115.0" width="18.9" height="16" rx="1.5" class="bar dn"/>
-<text x="86.0" y="123.0" text-anchor="end" class="lab" dominant-baseline="middle">ANFI</text>
-<text x="354.1" y="123.0" text-anchor="end" class="val dn" dominant-baseline="middle">-7.63%</text>
-<rect x="364.9" y="141.0" width="15.1" height="16" rx="1.5" class="bar dn"/>
-<text x="86.0" y="149.0" text-anchor="end" class="lab" dominant-baseline="middle">BIOC</text>
-<text x="357.9" y="149.0" text-anchor="end" class="val dn" dominant-baseline="middle">-6.07%</text>
-</svg>
+<rect x="133.0" y="11.0" width="247.0" height="16" rx="1.5" class="bar dn"/>
+<text x="86.0" y="19.0" text-anchor="end" class="lab" dominant-baseline="middle">AMES</text>
+<text x="126.0" y="19.0" text-anchor="end" class="val dn" dominant-baseline="middle">-20.00%</text>
+<rect x="268.3" y="37.0" width="111.7" height="16" rx="1.5" class="bar dn"/>
+<text x="86.0" y="45.0" text-anchor="end" class="lab" dominant-baseline="middle">DEIN</text>
+<text x="261.3" y="45.0" text-anchor="end" class="val dn" dominant-baseline="middle">-9.05%</text>
+<rect x="279.2" y="63.0" width="100.8" height="16" rx="1.5" class="bar dn"/>
+<text x="86.0" y="71.0" text-anchor="end" class="lab" dominant-baseline="middle">UTOP</text>
+<text x="272.2" y="71.0" text-anchor="end" class="val dn" dominant-baseline="middle">-8.16%</text>
+<rect x="285.8" y="89.0" width="94.2" height="16" rx="1.5" class="bar dn"/>
+<text x="86.0" y="97.0" text-anchor="end" class="lab" dominant-baseline="middle">ANFI</text>
+<text x="278.8" y="97.0" text-anchor="end" class="val dn" dominant-baseline="middle">-7.63%</text>
+<rect x="305.0" y="115.0" width="75.0" height="16" rx="1.5" class="bar dn"/>
+<text x="86.0" y="123.0" text-anchor="end" class="lab" dominant-baseline="middle">BIOC</text>
+<text x="298.0" y="123.0" text-anchor="end" class="val dn" dominant-baseline="middle">-6.07%</text>
+<rect x="307.0" y="141.0" width="73.0" height="16" rx="1.5" class="bar dn"/>
+<text x="86.0" y="149.0" text-anchor="end" class="lab" dominant-baseline="middle">ISMA</text>
+<text x="300.0" y="149.0" text-anchor="end" class="val dn" dominant-baseline="middle">-5.91%</text>
+</svg></div>
 <table><thead><tr><th>السهم</th><th class="n">السعر</th><th class="n">التغير</th><th class="n">منذ بداية العام</th></tr></thead><tbody>
-<tr><td><span class="t">BIGP</span><br><span class="co">El Barbary Investment Group (BIG)</span></td><td class="n">0.14</td><td class="n"><span class="dn">-99.54%</span></td><td class="n"><span class="dn">-6.7%</span></td></tr>
 <tr><td><span class="t">AMES</span><br><span class="co">Alexandria New Medical Center</span></td><td class="n">104.59</td><td class="n"><span class="dn">-20.00%</span></td><td class="n"><span class="up">+89.8%</span></td></tr>
 <tr><td><span class="t">DEIN</span><br><span class="co">Delta Insurance</span></td><td class="n">10.35</td><td class="n"><span class="dn">-9.05%</span></td><td class="n"><span class="dn">-9.1%</span></td></tr>
 <tr><td><span class="t">UTOP</span><br><span class="co">Utopia Real Estate Investment and Tourism</span></td><td class="n">79.25</td><td class="n"><span class="dn">-8.16%</span></td><td class="n"><span class="up">+1478.7%</span></td></tr>
@@ -266,17 +297,18 @@ footer p{margin:0 0 8px;max-width:var(--measure)}
 <tr><td><span class="t">BIOC</span><br><span class="co">Glaxo Smith Kline</span></td><td class="n">320.04</td><td class="n"><span class="dn">-6.07%</span></td><td class="n"><span class="up">+402.8%</span></td></tr>
 <tr><td><span class="t">ISMA</span><br><span class="co">Ismailia Misr Poultry</span></td><td class="n">32.66</td><td class="n"><span class="dn">-5.91%</span></td><td class="n"><span class="up">+136.7%</span></td></tr>
 <tr><td><span class="t">EPPK</span><br><span class="co">El Ahram Co. For Printing And Packing</span></td><td class="n">11.41</td><td class="n"><span class="dn">-5.00%</span></td><td class="n"><span class="dn">-1.8%</span></td></tr>
+<tr><td><span class="t">BSFR</span><br><span class="co">Brothers Solidarity For Real Estate Investment And Food Security</span></td><td class="n">1.55</td><td class="n"><span class="dn">-4.91%</span></td><td class="n"><span class="dn">-16.7%</span></td></tr>
 </tbody></table></section>
-<section><h2 class="sec">الإفصاحات</h2>
+<section id="filings"><h2 class="sec">الإفصاحات</h2>
 <ul class="filings">
-<li><span class="when">02 September 12:30 AM</span><span class="t">AXPH</span> {{image.desc | translate}}</li>
-<li><span class="when">02 September 12:30 AM</span><span class="t">CPCI</span> {{image.desc | translate}}</li>
-<li><span class="when">02 September 12:30 AM</span><span class="t">EGAL</span> {{image.desc | translate}}</li>
-<li><span class="when">02 September 12:30 AM</span><span class="t">JUFO</span> {{image.desc | translate}}</li>
-<li><span class="when">02 September 12:30 AM</span><span class="t">MBSC</span> {{image.desc | translate}}</li>
-<li><span class="when">02 September 12:30 AM</span><span class="t">MOSC</span> {{image.desc | translate}}</li>
-<li><span class="when">02 September 12:30 AM</span><span class="t">MPCO</span> {{image.desc | translate}}</li>
-<li><span class="when">02 September 12:30 AM</span><span class="t">CAED</span> {{image.desc | translate}}</li>
+<li><span class="when">24 August 02:48 PM</span><span class="t">AXPH</span> Alexandria Pharmaceuticals (AXPH.CA) - Release Regarding a Disclosure Form</li>
+<li><span class="when">2 August 03:50 PM</span><span class="t">CPCI</span> Cairo Pharmaceuticals (CPCI.CA) - Decisions of the BoD Meeting</li>
+<li><span class="when">22 July 09:29 AM</span><span class="t">EGAL</span> Egypt Aluminum (EGAL.CA) - Disclosure Form for the BoD &amp; the Shareholders&#x27; Structure</li>
+<li><span class="when">5 August 09:09 AM</span><span class="t">JUFO</span> Juhayna Food Industries (JUFO.CA) Reports Its Financial Results (Consolidated) for the Period from 01/01/2026 to 30/06/2026</li>
+<li><span class="when">31 August 09:07 AM</span><span class="t">MBSC</span> Release from Misr Beni Suef Cement (MBSC.CA) Concerning the Purchase of Treasury Stocks</li>
+<li><span class="when">31 August 09:59 AM</span><span class="t">MOSC</span> Release from Misr Oils &amp; Soap (MOSC.CA) Regarding the Investor Relations Officer</li>
+<li><span class="when">30 August 08:49 AM</span><span class="t">MPCO</span> Mansourah Poultry (MPCO.CA) - Decisions of the BoD Meeting</li>
+<li><span class="when">25 August 02:36 PM</span><span class="t">CAED</span> Release from Cairo Educational Services (CAED.CA) Concerning the Board of Directors &amp; the Executive Managers</li>
 </ul></section>
 </main>
 <footer><div class="wrap">

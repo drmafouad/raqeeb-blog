@@ -4,6 +4,17 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>EGX Daily</title>
 <meta name="description" content="Egyptian Exchange session report">
+<meta name="theme-color" content="#fcfbf7">
+<meta name="theme-color" content="#15151a" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EGX Daily">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="EGX Daily">
+<meta property="og:description" content="Egyptian Exchange session report">
+<meta property="og:url" content="https://egx.investorbunny.com/en/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EGX Daily">
+<meta name="twitter:description" content="Egyptian Exchange session report">
 <link rel="canonical" href="https://egx.investorbunny.com/en/">
 <link rel="alternate" hreflang="ar" href="https://egx.investorbunny.com/ar/">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -89,6 +100,26 @@ footer p{margin:0 0 8px;max-width:var(--measure)}
   table{font-size:.9rem} .stat{gap:20px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+@media (prefers-color-scheme:dark){
+  :root{
+    --ink:#e9e7e0; --ink-soft:#a19d92; --paper:#15151a; --panel:#1e1e25;
+    --rule:#2d2d35; --gold:#d9b568; --gain:#3ecf8e; --loss:#ff7a72; --flat:#4a4a54;
+  }
+  .ribbon .fl{background:#3c3c46}
+  .chart .bar.fl{fill:#3c3c46}
+}
+
+/* quick jump nav - only rendered when a page has enough sections to need it */
+nav.jump{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 32px;font-size:.86rem}
+nav.jump a{color:var(--ink-soft);text-decoration:none;padding:5px 12px;
+  border:1px solid var(--rule);border-radius:999px;white-space:nowrap}
+nav.jump a:hover{color:var(--ink);border-color:var(--gold)}
+
+/* charts stay legible at native size on narrow phones by scrolling
+   sideways instead of shrinking their text past reading size */
+.chart-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 8px}
+.chart-scroll .chart{min-width:520px;margin:0}
 
 .chart{width:100%;height:auto;display:block;margin:0 0 8px;overflow:visible}
 .chart .bar.up{fill:var(--gain)} .chart .bar.dn{fill:var(--loss)}
